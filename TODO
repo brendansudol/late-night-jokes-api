@@ -1,0 +1,5 @@
+* handle duplicates
+* clean & publish joke fetch script
+* paginate
+* split out dev/prod settings
+* use natural language API to extract categories
