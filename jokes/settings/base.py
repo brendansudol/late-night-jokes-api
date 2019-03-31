@@ -5,13 +5,6 @@ import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'super secret'
-
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -21,11 +14,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django.contrib.postgres',
-
+    'corsheaders',
     'api',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -97,3 +92,12 @@ STATIC_URL = '/static/'
 # https://warehouse.python.org/project/whitenoise/
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+# CORS settings
+
+CORS_ORIGIN_WHITELIST = (
+    'brendansudol.com',
+    'localhost:3000',
+    'localhost:8000',
+)

@@ -1,5 +1,12 @@
 * handle duplicates
 * clean & publish joke fetch script
-* paginate
-* split out dev/prod settings
+
+MAYBE LATER
+
+* pagination
 * use natural language API to extract categories
+
+DONE
+
+* update CORS
+* split out dev/prod settings
