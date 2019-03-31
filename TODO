@@ -1,5 +1,8 @@
+TODO
+
 * handle duplicates
 * clean & publish joke fetch script
+* front-end app!
 
 MAYBE LATER
 
@@ -10,3 +13,4 @@ DONE
 
 * update CORS
 * split out dev/prod settings
+* rename url
