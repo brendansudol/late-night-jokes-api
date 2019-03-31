@@ -6,7 +6,7 @@ from api.models import Joke
 
 class DataView(View):
     model = Joke
-    limit = 10
+    limit = 100
 
     def get(self, request, *args, **kwargs):
         queryset = self.model.objects.search(request.GET)
