@@ -13,8 +13,8 @@ class JokeManager(models.Manager):
     def search(self, params):
         qs = self.get_queryset()
 
-        if params.get('q'):
-            qs = qs.filter(text__search=params['q'])
+        if params.get('query'):
+            qs = qs.filter(text__search=params['query'])
 
         if params.get('host'):
             qs = qs.filter(host__iexact=params['host'])
