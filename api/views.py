@@ -9,6 +9,14 @@ class DataView(View):
     limit = 500
 
     def get(self, request, *args, **kwargs):
-        queryset = self.model.objects.search(request.GET)
-        results = [entry.to_dict() for entry in queryset[:self.limit]]
-        return JsonResponse({'results': results})
+        params = request.GET
+        return JsonResponse({'results': self.fetch_data(params)})
+
+    def fetch_data(self, params):
+        # return nothing if query less than 3 characters
+        query = params.get('query')
+        if not query or len(query) < 3:
+            return []
+
+        queryset = self.model.objects.search(params)
+        return [entry.to_dict() for entry in queryset[:self.limit]]

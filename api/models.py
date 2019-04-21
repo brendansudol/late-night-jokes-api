@@ -1,5 +1,7 @@
 from django.db import models
 
+from api.util import HOST_LOOKUP
+
 
 class ModelBase(models.Model):
     created = models.DateTimeField(auto_now_add=True)
@@ -16,11 +18,13 @@ class JokeManager(models.Manager):
         if params.get('query'):
             qs = qs.filter(text__search=params['query'])
 
-        if params.get('host'):
-            qs = qs.filter(host__iexact=params['host'])
-
         if params.get('year'):
             qs = qs.filter(date__year=params['year'])
+
+        if params.get('host'):
+            host = HOST_LOOKUP.get(params['host'].lower())
+            if host:
+                qs = qs.filter(host__iexact=host)
 
         return qs.order_by(params.get('order') or '-date')
 
@@ -34,7 +38,7 @@ class Joke(ModelBase):
     objects = JokeManager()
 
     def __str__(self):
-        return '{}-{}-{}'.format(self.host, self.date, self.id)
+        return '{}-{}-{}'.format(self.host, self.date, self.pk)
 
     def to_dict(self):
         fields = ['id', 'host', 'source', 'date', 'text']
