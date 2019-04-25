@@ -98,6 +98,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CORS_ORIGIN_WHITELIST = (
     'brendansudol.com',
+    'latenightlol.com',
     'localhost:3000',
     'localhost:8000',
 )
