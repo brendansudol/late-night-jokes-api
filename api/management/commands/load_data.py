@@ -55,6 +55,15 @@ class Command(BaseCommand):
 
         for d in conan_data:
             dt = datetime.datetime.strptime(d['credit-date'], '%B %d, %Y')
+            # (sometimes, the date from "credit-date" is bad)
+            if dt.year < 2000:
+                date_str = d['title'].split(' - ')[0]
+                try:
+                    dt = datetime.datetime.strptime(date_str, '%b %d, %Y')
+                except:
+                    print('cannot parse date: {}'.format(date_str))
+                    continue
+
             jokes.append(
                 Joke(
                     host=HOST_LOOKUP[CONAN_KEY],

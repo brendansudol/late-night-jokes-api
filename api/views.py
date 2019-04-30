@@ -20,3 +20,13 @@ class DataView(View):
 
         queryset = self.model.objects.search(params)
         return [entry.to_dict() for entry in queryset[:self.limit]]
+
+
+class RandomView(View):
+    model = Joke
+    limit = 100
+
+    def get(self, request, *args, **kwargs):
+        entries = self.model.objects.rand(self.limit)
+        results = [entry.to_dict() for entry in entries]
+        return JsonResponse({'results': results})
