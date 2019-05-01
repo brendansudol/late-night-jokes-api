@@ -30,7 +30,7 @@ class JokeManager(models.Manager):
 
     def rand(self, limit=100):
         # return 3% of entries from table (~1k)
-        query = 'SELECT * FROM api_joke TABLESAMPLE SYSTEM (3);'
+        query = 'SELECT * FROM api_joke TABLESAMPLE BERNOULLI (3);'
         return self.raw(query)[:limit]
 
 
