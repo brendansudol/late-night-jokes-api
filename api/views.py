@@ -27,6 +27,5 @@ class RandomView(View):
     limit = 100
 
     def get(self, request, *args, **kwargs):
-        entries = self.model.objects.rand(self.limit)
-        results = [entry.to_dict() for entry in entries]
+        results = self.model.objects.rand(self.limit)
         return JsonResponse({'results': results})

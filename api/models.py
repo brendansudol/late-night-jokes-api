@@ -1,3 +1,5 @@
+from random import shuffle
+
 from django.db import models
 
 from api.util import HOST_LOOKUP
@@ -31,7 +33,12 @@ class JokeManager(models.Manager):
     def rand(self, limit=100):
         # return 3% of entries from table (~1k)
         query = 'SELECT * FROM api_joke TABLESAMPLE BERNOULLI (3);'
-        return self.raw(query)[:limit]
+        results = [entry.to_dict() for entry in self.raw(query)]
+
+        # one more round of randomizing
+        shuffle(results)
+
+        return results[:limit]
 
 
 class Joke(ModelBase):

@@ -40,6 +40,9 @@ class Command(BaseCommand):
             if d['host'].lower() == CONAN_KEY:
                 continue
 
+            if d['date'] == '2018-09-28':
+                continue
+
             jokes.append(
                 Joke(
                     host=HOST_LOOKUP[d['host'].lower()],
