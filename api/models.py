@@ -1,6 +1,7 @@
 from random import shuffle
 
 from django.db import models
+from django.db.models.functions import Length
 
 from api.util import HOST_LOOKUP
 
@@ -27,6 +28,9 @@ class JokeManager(models.Manager):
             host = HOST_LOOKUP.get(params['host'].lower())
             if host:
                 qs = qs.filter(host__iexact=host)
+
+        if params.get('order') == 'length':
+            return qs.order_by(Length('text'))
 
         return qs.order_by(params.get('order') or '?')
 
