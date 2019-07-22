@@ -28,7 +28,7 @@ class JokeManager(models.Manager):
             if host:
                 qs = qs.filter(host__iexact=host)
 
-        return qs.order_by(params.get('order') or '-date')
+        return qs.order_by(params.get('order') or '?')
 
     def rand(self, limit=100):
         # return 3% of entries from table (~1k)

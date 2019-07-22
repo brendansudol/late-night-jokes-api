@@ -36,11 +36,16 @@ class Command(BaseCommand):
         with open(JOKES_ALL_HOSTS_FNAME) as f:
             data = json.load(f)
 
-        for d in data:
-            if d['host'].lower() == CONAN_KEY:
+        # remove dupes
+        data_sorted = sorted(data, key=lambda d: d['joke'])
+        data_filtered = []
+        for i, d in enumerate(data_sorted):
+            if i and d['joke'] == data_sorted[i - 1]['joke']:
                 continue
+            data_filtered.append(d)
 
-            if d['date'] == '2018-09-28':
+        for d in data_filtered:
+            if d['host'].lower() == CONAN_KEY:
                 continue
 
             jokes.append(
