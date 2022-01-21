@@ -3,7 +3,7 @@ Django==2.1.7
 django-cors-headers==2.5.2
 django-postgrespool==0.3.1
 gunicorn==19.9.0
-ipython==7.4.0
+ipython==7.16.3
 psycopg2==2.7.7
 psycopg2-binary==2.7.7
 pytz==2018.9
