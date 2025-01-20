@@ -56,8 +56,9 @@ WSGI_APPLICATION = 'jokes.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=500)
-DATABASES['default']['ENGINE'] = 'django_postgrespool'
+# DATABASES['default'] = dj_database_url.config(conn_max_age=500)
+# DATABASES['default']['ENGINE'] = 'django_postgrespool2.backend'
+DATABASES['default'] = dj_database_url.config(engine='django.db.backends.postgresql')
 
 
 # Password validation
@@ -96,9 +97,11 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # CORS settings
 
-CORS_ORIGIN_WHITELIST = (
-    'brendansudol.com',
-    'latenightlol.com',
-    'localhost:3000',
-    'localhost:8000',
-)
+CORS_ORIGIN_WHITELIST = [
+    'https://brendansudol.com',
+    'http://brendansudol.com',
+    'https://latenightlol.com',
+    'http://latenightlol.com',
+    'http://localhost:3000',
+    'http://localhost:8000',
+]
